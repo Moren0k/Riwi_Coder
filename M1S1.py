@@ -21,7 +21,7 @@ print("La cantidad del producto es:", cantidad)
 
 ##Solicitamos al usuario que ingrese el descuento de el producto.
 descuento = input("Ingrese el descuento del producto: ") ##Descuento del producto
-while not descuento.isdigit() < 0 or (descuento) > 100:
+while not descuento.isdigit() < 0 or descuento.isdigit > 100:
     print("El descuento debe ser un número entre 0 y 100. Intente nuevamente.")
     descuento = input("Ingrese el descuento del producto: ")
 print("El descuento del producto es:", descuento)
@@ -29,7 +29,7 @@ print("El descuento del producto es:", descuento)
 total = float(precio) * int(cantidad)##Calulamos el total sin descuento.
 descuento = float(descuento) / 100 ##Convertimos el descuento a decimal.
 total_con_descuento = total - (total * descuento) ##Calculamos el total con descuento.
+descuento_total = total * descuento ##Calculamos el descuento total.
 print("El total de:", nombre, "sin descuento es:", total) ##Mostramos el total sin descuento.
 print("El total con descuento es:", total_con_descuento) ##Mostramos el total con descuento.
-descuento_total = total * descuento ##Calculamos el descuento total.
 print("El descuento total es:", descuento_total) ##Mostramos el descuento total.
