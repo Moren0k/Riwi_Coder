@@ -3,8 +3,7 @@
 #Autor: Jhos Kevin Agudelo Moreno
 #Descripción: Solicita datos del producto, aplica validaciones, calcula el total con descuento y muestra un resumen.
 #========================================
-#Cree la variable (productname) = Con un (input) Que guarda lo que el usuario escriba en la variable (productname) y muestra el mensaje entre comillas.
-nombreproducto = input("Ingresa el nombre del producto: ")
+nombreproducto = input("Ingresa el nombre del producto: ") #Cree la variable (productname) = Con un (input) Que guarda lo que el usuario escriba en la variable (productname) y muestra el mensaje entre comillas.
 #---
 while True: #Cree un bucle con (while) que siempre es verdadero(True) y solo se detiene con (break).
 	try: #con (try) si todo dentro del bloque se ejecuta sin errores, el código continúa. Si ocurre algun error saltara al bloque (except).
@@ -38,8 +37,7 @@ while True: #Cree un bucle con (while) utilizando (float) Esto es útil cuando e
 		print("Entrada no válida. Ingresa un número decimal.")
 #---
 total_sin_descuento = precio * cantidad #Creo la variable (total_sin_descuento) que sera igual(=) a el precio(precio) por(*) la cantidad(cantidad).
-cantidad_descuento = total_sin_descuento * (descuento / 100) #Creo la variable (cantidad_descuento) que sera igual(=) a el (total_sin_descuento) por(*)
-																														 #-(el descuento(descuento) dividido(/) entre cien(100)).
+cantidad_descuento = total_sin_descuento * (descuento / 100) #Creo la variable (cantidad_descuento) que sera igual(=) a el (total_sin_descuento) por(*) el descuento(el descuento(descuento) dividido(/) entre cien(100)).
 total_final = total_sin_descuento - cantidad_descuento #Creo la variable (total_final) que sera igual(=) a el(total_sin_descuento) menos(-) la(cantidad_descuento).
 #---
 #Mostramos el resultado de las varibles definidas.
