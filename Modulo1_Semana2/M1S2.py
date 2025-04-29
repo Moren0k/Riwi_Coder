@@ -1,6 +1,7 @@
-lista_notas_validas = []
+lista_notas_validas = [] # Lista para almacenar calificaciones válidas
 
-def guardar_calificaciones():  # Función para guardar calificaciones
+# Función para guardar calificaciones
+def guardar_calificaciones(): 
     while True:
         evaluo = int(input("Desde que numero de calificación quieres evaluar: "))
         entrada = input("Ingresa una calificación (0 a 100) o 'fin' para terminar: ").strip()
@@ -11,6 +12,7 @@ def guardar_calificaciones():  # Función para guardar calificaciones
 
         try:
             calificacion = float(entrada)
+            # Evaluar si el estudiante aprobó o reprobó
             if calificacion <= evaluo:
                 print("Reprobado")
             else:
