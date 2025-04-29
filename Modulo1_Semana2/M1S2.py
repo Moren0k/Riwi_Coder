@@ -1,28 +1,36 @@
-def ingresar_Calificacion(): #Solicitar al usuario ingresar una calificación numérica (de 0 a 100).
+lista_notas_validas = []
 
+def guardar_calificaciones():  # Función para guardar calificaciones
     while True:
-        calificacion = float(input("\nIngresa la calificación número (de 0 a 100): "))
-        print(f"La calificación ingresada es: {calificacion}")
-   
-        if calificacion < 0 or calificacion > 100:
-                print("La calificación debe ser entre 0 y 100.")
-        else:
-            return calificacion
-        print("Por favor, ingresa un número válido.")
-    
+        evaluo = int(input("Desde que numero de calificación quieres evaluar: "))
+        entrada = input("Ingresa una calificación (0 a 100) o 'fin' para terminar: ").strip()
+        
+        # Verificar si el usuario quiere terminar
+        if entrada.lower() == "fin":
+            break
 
-def evaluar_Calificacion(calificacion): # Validamos si aprobo o reprobo.
-     if calificacion >= 60:
-          print("aprobado")
-     else:
-          print("reprobado")
+        try:
+            calificacion = float(entrada)
+            if calificacion <= evaluo:
+                print("Reprobado")
+            else:
+                print("Aprobado")
 
-calificaciones = []
-contador = 0
-while contador < 3:
-    print("\nIngresa la calificación número", )
-    calificacion = ingresar_Calificacion() #Donde se guarda la calificacion ingresada.
+            # Validar que la calificación esté en el rango de 0 a 100
+            if 0 <= calificacion <= 100:
+                lista_notas_validas.append(calificacion)
+            else:
+                print("Error: La calificación debe estar entre 0 y 100.")
+        except ValueError:
+            print("Error: Debes ingresar un número válido o 'fin' para terminar.")
 
+guardar_calificaciones()
+print("Calificaciones válidas ingresadas:", lista_notas_validas)
 
-evaluar_Calificacion(calificacion) #Se llama la funcion para evaluar si es mas o menos que 60.
-##Kevin Moreno
+def calcular_promedio(lista_notas_validas=[]):
+    if not lista_notas_validas:
+        print("No hay calificaciones válidas para calcular el promedio.")
+        return
+    promedio = sum(lista_notas_validas) / len(lista_notas_validas)
+    print("el promedio de las calificaciones es: ", promedio)
+calcular_promedio(lista_notas_validas)
