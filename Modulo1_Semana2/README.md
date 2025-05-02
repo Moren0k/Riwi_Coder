@@ -35,3 +35,17 @@
 
     Lógica estructurada y sin repeticiones innecesarias: ✔️
 ---
+### Uso del inglés
+| Uso en inglés            | Uso en español                     |
+| ------------------------ | ---------------------------------- |
+| `lists_valid_notes`      | `lista_notas_validas`              |
+| `evaluate`               | `evaluo`                           |
+| `qualification_def()`    | `calificaciones()`                 |
+| `entry`                  | `entrada`                          |
+| `parts`                  | `partes`                           |
+| `qualification`          | `calificacion`                     |
+| `average()`              | `calcular_promedio()`              |
+| `prom`                   | `promedio`                         |
+| `higher_grades()`        | `contar_calificaciones_mayoresa()` |
+| `value`                  | `valor`                            |
+| `counter`                | `contador`                         |

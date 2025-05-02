@@ -1,59 +1,58 @@
 """Jhos Kevin Agudelo Moreno"""
-lista_notas_validas = [] # Lista para almacenar calificaciones válidas
-
+lists_valid_notes = [] # Lista para almacenar calificaciones válidas
 while True:
     try:
-        evaluo = float(input("Desde qué número de calificación quieres evaluar (1 a 99): "))
-        if 1 <= evaluo <= 99:
+        evaluate = float(input("Desde qué número de calificación quieres evaluar (1 a 99): "))
+        if 1 <= evaluate <= 99:
             break
         print("Error: La calificación de evaluación debe estar entre 1 y 99.")
     except:
         print("Error: Entrada no válida. Debe ser un número entre 1 y 99.")
         
 #   Función para guardar, validar y evaluar calificaciones
-def calificaciones():
+def qualification_def():
     while True:
-        entrada = input("Ingresa una calificación (0 a 100) o 'fin' para terminar: ")
-        if entrada.lower() == "fin":#Verificar si el usuario quiere terminar de ingresar calificaciones
-            break 
-        if "," in entrada:
-            partes = entrada.split(",")
+        entry = input("Ingresa una calificación (0 a 100) o 'fin' para terminar: ")
+        if entry.lower() == "fin":#Verificar si el usuario quiere terminar de ingresar calificaciones
+            break
+        if "," in entry:
+            parts = entry.split(",")
         else:
-            partes = [entrada]
-        for parte in partes:
+            parts = [entry]
+        for parte in parts:
             try:
-                calificacion = float(parte.strip())
-                if 0 <= calificacion <= 100:
-                    lista_notas_validas.append(calificacion)
-                    if calificacion >= evaluo:
-                        print(calificacion, "# Aprobado")
+                qualification = float(parte.strip())
+                if 0 <= qualification <= 100:
+                    lists_valid_notes.append(qualification)
+                    if qualification >= evaluate:
+                        print(qualification, "# Aprobado")
                     else:
-                        print(calificacion, "# Reprobado")
+                        print(qualification, "# Reprobado")
                 else:
                     print("Error: La calificación debe estar entre 0 y 100.")
             except ValueError:
                 print("Error: Entrada no válida. Debe ser un número o 'fin'.")
-calificaciones()
+qualification_def()
 print("\n--- Calificaciones válidas ---")
-print("Calificaciones válidas ingresadas:", lista_notas_validas)
+print("Calificaciones válidas ingresadas:", lists_valid_notes)
 
 #   Función para calcular el promedio de las calificaciones
-def calcular_promedio(lista_notas_validas=[]): 
-    if not lista_notas_validas:
+def average(lists_valid_notes=[]):
+    if not lists_valid_notes:
         print("No hay calificaciones válidas para calcular el promedio.")
         return
-    promedio = sum(lista_notas_validas) / len(lista_notas_validas)
-    print("El promedio de las calificaciones es:", round(promedio, 2))
+    prom = sum(lists_valid_notes) / len(lists_valid_notes)
+    print("El promedio de las calificaciones es:", round(prom, 2))
 print("\n--- Calcular promedio ---")
-calcular_promedio(lista_notas_validas)
+average(lists_valid_notes)
 
 #   Función para contar cuántas calificaciones son mayores a un valor dado
-def contar_calificaciones_mayoresa (lista_notas_validas): 
-    if not lista_notas_validas:
+def higher_grades (lists_valid_notes):
+    if not lists_valid_notes:
         print("No hay calificaciones válidas para contar.")
         return
-    valor = float(input("Ingresa un valor para buscar calificaciones mayores: "))
-    contador = sum(1 for calificacion in lista_notas_validas if calificacion > valor)
-    print("hay", contador, "calificaciones mayores a", valor)
+    value = float(input("Ingresa un valor para buscar calificaciones mayores: "))
+    counter = sum(1 for qualification in lists_valid_notes if qualification > value)
+    print("hay", counter, "calificaciones mayores a", value)
 print("\n--- Contar calificaciones mayores a un valor ---")
-contar_calificaciones_mayoresa(lista_notas_validas)
+higher_grades(lists_valid_notes)
