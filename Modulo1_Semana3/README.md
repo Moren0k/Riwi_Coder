@@ -9,7 +9,7 @@ Eres parte del equipo de desarrollo de software de una tienda que desea mejorar 
 ```
 Añadir productos:
     Cada producto debe estar definido por su nombre, precio y cantidad disponible
-    Esta información será almacenada de modo que el inventario pueda crecer dinámicamente
+    Esta información seerá almacenada de modo que el inventario pueda crecer dinámicament
 Consultar productos:
     Se debe poder buscar un producto por su nombre y obtener detalles como su precio y cantidad disponible
     Si el producto no está en el inventario, se debe notificar adecuadamente
