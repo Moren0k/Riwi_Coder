@@ -1,6 +1,3 @@
-"""programa en Python que permita al equipo añadir#, consultar#, actualizar# y 
-eliminar# productos del inventario de manera eficiente, así como calcular el valor total# del inventario."""
-
 productos = []
 name_shop = ()
 
@@ -14,7 +11,7 @@ def validate_price_quantity():
             cantidad = int(cantidad)
             return precio, cantidad
         except ValueError:
-            print("¡ERROR! Estas ingresando datos invalidos")
+            print("¡ERROR! Estás ingresando datos inválidos. Por favor, ingresa un número válido.")
 
 def def_name_shop():
     """Definir el nombre de la tienda con una tupla"""
@@ -24,16 +21,27 @@ def def_name_shop():
     
 def agregar_producto():
     """Agrega un nuevo producto al inventario"""
-    nombre = input("Ingrese el nombre del producto: ")
-    precio, cantidad = validate_price_quantity()
-    
-    nuevo_producto = {
-        "Nombre del producto": nombre,
-        "precio": precio,
-        "cantidad": cantidad    
-    }
-    productos.append(nuevo_producto)
-    print(f"Producto {nombre} agregado al inventario.")
+    while True:
+        try:
+            nombre = input("Ingrese el nombre del producto: ").strip().lower()
+            
+            if not nombre:
+                print("¡ERROR! El nombre no puede estar vacío")
+                continue
+            
+            precio, cantidad = validate_price_quantity()
+            nuevo_producto = {
+                "Nombre del producto": nombre,
+                "precio": precio,
+                "cantidad": cantidad    
+            }
+        
+            productos.append(nuevo_producto)
+            print(f"Producto {nombre} agregado al inventario.")
+            break
+        
+        except ValueError:
+            print("¡ERROR! Estás ingresando datos inválidos. Por favor, ingresa un nombre válido.")
 
 def consultar_producto():
     """Consulta un producto en el inventario"""
@@ -42,6 +50,7 @@ def consultar_producto():
         if producto["Nombre del producto"] == nombre:
             print(f"Producto encontrado: {producto}")
             return
+    print("\n--- - ---")
     print(f"Producto {nombre} no encontrado en el inventario.")
     
 def actualizar_producto():
@@ -52,9 +61,10 @@ def actualizar_producto():
             nuevo_precio = float(input("Ingrese el nuevo precio del producto: "))
             nueva_cantidad = int(input("Ingrese la nueva cantidad del producto: "))
             producto["precio"] = nuevo_precio
-            producto["cantidad"] =  nueva_cantidad
+            producto["cantidad"] = nueva_cantidad
             print(f"Producto {nombre} actualizado")
             return
+    print("\n--- - ---")
     print(f"Producto {nombre} no encontrado en el inventario.")
     
 def eliminar_producto():
@@ -65,21 +75,22 @@ def eliminar_producto():
             productos.remove(producto)
             print(f"Producto {nombre} eliminado del inventario")
             return
+    print("\n--- - ---")
     print(f"Producto {nombre} no encontrado en el inventario.")
 
 def calcular_valor_inventario():
     """Calcula el valor total del inventario"""
-    calcular_valor = lambda producto,: producto["precio"] * producto["cantidad"]
+    calcular_valor = lambda producto: producto["precio"] * producto["cantidad"]
     valores = map(calcular_valor, productos)
     total = sum(valores)
-    print(f"El valor total del inventario es: {total}")    
-        
-    
+    print("\n--- - ---")
+    print(f"El valor total del inventario es: {total}")
+
 def menu():
     def_name_shop()
     """Muestra el menú de opciones"""
     while True:
-        print(f"\nMenu de opciones de la tienda {(name_shop[0])}:")
+        print(f"\nMenú de opciones de la tienda {name_shop[0]}:")
         print("1. Agregar producto")
         print("2. Consultar producto")
         print("3. Actualizar producto")
@@ -104,5 +115,6 @@ def menu():
             break
         else:
             print("Opción no válida, intente nuevamente.")
+            
 # Llamar a la función del menú para iniciar el programa
 menu()
