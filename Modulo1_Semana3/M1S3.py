@@ -2,16 +2,34 @@
 eliminar# productos del inventario de manera eficiente, así como calcular el valor total# del inventario."""
 
 productos = []
+name_shop = ()
 
+def validate_price_quantity():
+    """Validar que el numero sea un número flotante o entero"""
+    while True:
+        try:
+            precio = input("Ingrese el precio del producto: ")
+            precio = float(precio)
+            cantidad = input("Ingrese la cantidad del producto: ")
+            cantidad = int(cantidad)
+            return precio, cantidad
+        except ValueError:
+            print("¡ERROR! Estas ingresando datos invalidos")
+
+def def_name_shop():
+    """Definir el nombre de la tienda con una tupla"""
+    global name_shop
+    name = input("Ingrese el nombre de la tienda: ")
+    name_shop = (name,)
+    
 def agregar_producto():
     """Agrega un nuevo producto al inventario"""
     nombre = input("Ingrese el nombre del producto: ")
-    precio = float(input("Ingrese el precio del producto: "))
-    cantidad = int(input("Ingrese la cantidad del producto: "))
+    precio, cantidad = validate_price_quantity()
     
     nuevo_producto = {
         "Nombre del producto": nombre,
-        "Precio": precio,
+        "precio": precio,
         "cantidad": cantidad    
     }
     productos.append(nuevo_producto)
@@ -33,7 +51,7 @@ def actualizar_producto():
         if producto["Nombre del producto"] == nombre:
             nuevo_precio = float(input("Ingrese el nuevo precio del producto: "))
             nueva_cantidad = int(input("Ingrese la nueva cantidad del producto: "))
-            producto["Precio"] = nuevo_precio
+            producto["precio"] = nuevo_precio
             producto["cantidad"] =  nueva_cantidad
             print(f"Producto {nombre} actualizado")
             return
@@ -51,16 +69,17 @@ def eliminar_producto():
 
 def calcular_valor_inventario():
     """Calcula el valor total del inventario"""
-    calcular_valor = lambda producto: producto["Precio"] * producto["cantidad"]
+    calcular_valor = lambda producto,: producto["precio"] * producto["cantidad"]
     valores = map(calcular_valor, productos)
     total = sum(valores)
     print(f"El valor total del inventario es: {total}")    
         
     
 def menu():
+    def_name_shop()
     """Muestra el menú de opciones"""
     while True:
-        print("\nMenu de opciones:")
+        print(f"\nMenu de opciones de la tienda {(name_shop[0])}:")
         print("1. Agregar producto")
         print("2. Consultar producto")
         print("3. Actualizar producto")
