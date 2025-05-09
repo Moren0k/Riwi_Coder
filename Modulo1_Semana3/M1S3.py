@@ -111,7 +111,6 @@ def menu():
         elif opcion == "5":
             calcular_valor_inventario()
         elif opcion == "6":
-            print("Saliendo del programa.")
             break
         else:
             print("Opción no válida, intente nuevamente.")
