@@ -9,7 +9,7 @@ def_shop_name()
 
 def validate_price():#function that validates the entry of price data
     while True:
-        price = input("Introduzca el precio del producto:")
+        price = input("Introduzca el precio del producto: ").strip()
         if not price:
             print("\n---El campo no puede estar vacío. Por favor, introduzca un número.")
             continue
@@ -24,7 +24,7 @@ def validate_price():#function that validates the entry of price data
 
 def validate_quantity():#function that validates the input of data quantities
     while True:
-        quantity = input("Introduzca la cantidad del producto: ")
+        quantity = input("Introduzca la cantidad del producto: ").strip()
         if not quantity:
             print("\n---El campo no puede estar vacío. Por favor, introduzca un número.")
             continue
@@ -39,9 +39,9 @@ def validate_quantity():#function that validates the input of data quantities
             
 def add():#Function to save a product with its name, price and quantity
     while True:
-            title = input("Ingresa el nombre de el producto (0 para volver al menú): ")
+            title = input("Ingresa el nombre de el producto (0 para volver al menú): ").strip().lower()
             if not title:
-                print("¡ERROR! Este espacio no puede estar vacío.")
+                print("\n¡ERROR! Este espacio no puede estar vacío.")
             elif title == "0":
                 break
                 
@@ -50,7 +50,7 @@ def add():#Function to save a product with its name, price and quantity
             
             new_product = {"title":title, "price":price, "quantity":quantity}
             inventory.append(new_product)
-            print(f"El producto {title} Se agregó exitosamente al inventario.")      
+            print(f"\nEl producto {title} Se agregó exitosamente al inventario.")      
             return price, quantity
         
 def start():#Function that verifies that the system has at least 5 minimum products to start the system
@@ -64,19 +64,17 @@ def search():#function to search and display product data
         search_product = input("Ingresa el nombre de el producto que quieres buscar: ").strip().lower()
         for i in inventory:
             if i["title"] == search_product:
-                print("\n--- - ---")
                 print(f"\nEl producto {search_product} fue encontrado")
                 print(f"--{i}--")
                 return
         else:
-            print(f"El producto {search_product} no se encuentra en el inventario.")
+            print(f"\nEl producto {search_product} no se encuentra en el inventario.")
             
 def update():#function to modify the price and quantity of a product
-    """Modificar el precio/cantidad de un producto"""
     while True:
             update_to_product = input("Ingrese el nombre de el producto que desea actualizar (0 para volver al menú): ").strip().lower()
             if not update_to_product:
-                print("¡ERROR! Este espacio no puede estar vacío.")
+                print("\n¡ERROR! Este espacio no puede estar vacío.")
                 continue
             elif update_to_product == "0":#Functionality to return to the menu if necessary
                 break
@@ -86,29 +84,28 @@ def update():#function to modify the price and quantity of a product
                     new_quiantity = validate_quantity()
                     i["price"] = new_price
                     i["quantity"] = new_quiantity
-                    print(f"El producto {update_to_product} se actualizó correctamente")
+                    print(f"\nEl producto {update_to_product} se actualizó correctamente")
                     return
             else:
-                print(f"El producto {update_to_product} no fue encontrado en el inventario.")
+                print(f"\nEl producto {update_to_product} no fue encontrado en el inventario.")
             
 def remove():#function to remove a product from inventory
-    """Eliminar un producto que ya no esta disponible"""
     while True:
         try:
             remove_to_product = input("Ingresa el nombre de el producto que deseas eliminar (0 para volver al menú): ").strip().lower()
             if not remove_to_product:
-                print("¡ERROR! Este espacio no puede estar vacío.")
+                print("\n¡ERROR! Este espacio no puede estar vacío.")
             elif remove_to_product == "0":#Functionality to return to the menu if necessary
                 break
             for i in inventory:
                 if i["title"] == remove_to_product:
                     inventory.remove(i)
-                    print(f"El producto {remove_to_product} se eliminó correctamente.")
+                    print(f"\nEl producto {remove_to_product} se eliminó correctamente.")
                     return
             else:
-                print(f"El producto {remove_to_product} no fue encontrado en el inventario.")
+                print(f"\nEl producto {remove_to_product} no fue encontrado en el inventario.")
         except ValueError:
-            print("")
+            print("\n¡ERROR!")
     
 def calculate_inventory():#function to calculate the total inventory
     value_calculate = lambda product:product["price"] * product["quantity"]
