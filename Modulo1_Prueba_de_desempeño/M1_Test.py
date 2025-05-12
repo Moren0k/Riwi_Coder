@@ -1,9 +1,5 @@
 shop_name = ()#Save the store name
-inventory = [{"title": "book 1", "price": 10.0, "quantity": 100},
-    {"title": "book 2", "price": 15.0, "quantity": 50},
-    {"title": "book 3", "price": 20.0, "quantity": 30},
-    {"title": "book 4", "price": 25.0, "quantity": 10},
-    {"title": "book 5", "price": 30.0, "quantity": 5}]#list where all inventory is stored
+inventory = []#list where all inventory is stored
 
 def def_shop_name():#Function to request the store name
     global shop_name
