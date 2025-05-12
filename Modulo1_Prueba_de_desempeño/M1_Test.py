@@ -1,19 +1,17 @@
-shop_name = ()
-inventory = [
-    {"title": "p1", "price": 10.0, "quantity": 100},
-    {"title": "p2", "price": 15.0, "quantity": 50},
-    {"title": "p3", "price": 20.0, "quantity": 30},
-    {"title": "p4", "price": 25.0, "quantity": 10},
-    {"title": "p5", "price": 30.0, "quantity": 5},
-    ]
+shop_name = ()#Save the store name
+inventory = [{"title": "book 1", "price": 10.0, "quantity": 100},
+    {"title": "book 2", "price": 15.0, "quantity": 50},
+    {"title": "book 3", "price": 20.0, "quantity": 30},
+    {"title": "book 4", "price": 25.0, "quantity": 10},
+    {"title": "book 5", "price": 30.0, "quantity": 5}]#list where all inventory is stored
 
-def def_shop_name():#Nombre de la tienda
+def def_shop_name():#Function to request the store name
     global shop_name
     shop = input("Ingresa el nombre de la tienda: ").strip()
     shop_name = (shop,)
 def_shop_name()
 
-def validate_price():#Funcion para verificar que el precio sea correcto
+def validate_price():#function that validates the entry of price data
     while True:
         price = input("Introduzca el precio del producto:")
         if not price:
@@ -28,7 +26,7 @@ def validate_price():#Funcion para verificar que el precio sea correcto
         except ValueError:
             print("\n---¡ERROR! Está introduciendo datos no válidos. Introduzca un número válido.")
 
-def validate_quantity():#Funcion para verificar que la cantidad sea correcta
+def validate_quantity():#function that validates the input of data quantities
     while True:
         quantity = input("Introduzca la cantidad del producto: ")
         if not quantity:
@@ -43,29 +41,29 @@ def validate_quantity():#Funcion para verificar que la cantidad sea correcta
         except ValueError:
             print("\n---¡ERROR! Está introduciendo datos no válidos. Introduzca un número válido.")
             
-def add():#Agregar Productos
-    """Nombre, Precio y Cantidad Disponible"""
+def add():#Function to save a product with its name, price and quantity
     while True:
-        try:
-            title = input("Ingresa el nombre de el producto: ")
+            title = input("Ingresa el nombre de el producto (0 para volver al menú): ")
             if not title:
                 print("¡ERROR! Este espacio no puede estar vacío.")
-                continue
-            
+            elif title == "0":
+                break
+                
             price = validate_price()
             quantity = validate_quantity()
             
             new_product = {"title":title, "price":price, "quantity":quantity}
             inventory.append(new_product)
             print(f"El producto {title} Se agregó exitosamente al inventario.")      
-            break
-        except:
-            print("¡ERROR!")
-
+            return price, quantity
+        
+def start():#Function that verifies that the system has at least 5 minimum products to start the system
+    while len(inventory) < 5:
+        print(f"\nIngrese minimo {5 - len(inventory)} productos para inciar el programa")
+        add()
+start()
     
-def search():#Buscar Producto
-    """Buscar un producto por su nombre y
-    Mostrar sus detalles(Nombre, Precio, Cantidad)"""
+def search():#function to search and display product data
     while True:
         search_product = input("Ingresa el nombre de el producto que quieres buscar: ").strip().lower()
         for i in inventory:
@@ -75,16 +73,17 @@ def search():#Buscar Producto
                 print(f"--{i}--")
                 return
         else:
-            print(f"El producto { search_product}no se encuentra en el inventario")
-
-def update():#Actualizar Producto
+            print(f"El producto {search_product} no se encuentra en el inventario.")
+            
+def update():#function to modify the price and quantity of a product
     """Modificar el precio/cantidad de un producto"""
     while True:
-            update_to_product = input("Ingrese el nombre de el producto que desea actualizar: ").strip().lower()
+            update_to_product = input("Ingrese el nombre de el producto que desea actualizar (0 para volver al menú): ").strip().lower()
             if not update_to_product:
                 print("¡ERROR! Este espacio no puede estar vacío.")
                 continue
-            
+            elif update_to_product == "0":#Functionality to return to the menu if necessary
+                break
             for i in inventory:
                 if i["title"] == update_to_product:
                     new_price = validate_price()
@@ -96,37 +95,37 @@ def update():#Actualizar Producto
             else:
                 print(f"El producto {update_to_product} no fue encontrado en el inventario.")
             
-def remove():#Eliminar Producto
+def remove():#function to remove a product from inventory
     """Eliminar un producto que ya no esta disponible"""
     while True:
         try:
-            remove_to_product = input("Ingresa el nombre de el producto que deseas eliminar: ").strip().lower()
+            remove_to_product = input("Ingresa el nombre de el producto que deseas eliminar (0 para volver al menú): ").strip().lower()
             if not remove_to_product:
                 print("¡ERROR! Este espacio no puede estar vacío.")
-                
+            elif remove_to_product == "0":#Functionality to return to the menu if necessary
+                break
             for i in inventory:
                 if i["title"] == remove_to_product:
                     inventory.remove(i)
                     print(f"El producto {remove_to_product} se eliminó correctamente.")
                     return
-                else:
-                    print(f"El producto {remove_to_product} no fue encontrado en el inventario.")
+            else:
+                print(f"El producto {remove_to_product} no fue encontrado en el inventario.")
         except ValueError:
             print("")
     
-def calculate_inventory():#Calcular el valor total de el inventario
-    value_calculate = lambda inventory: inventory["price"] * inventory["quantity"]
+def calculate_inventory():#function to calculate the total inventory
+    value_calculate = lambda product:product["price"] * product["quantity"]
     value = map(value_calculate, inventory)
     total_value = sum(value)
-    print(f"\nEl valor total del inventario es: {total_value}")
+    print(f"\nEl valor total del inventario es: {(round(total_value))}")
 
-def view_inventory():#Ver el inventario completo //FUNCIONA
-    """Mostrar el inventario completo de productos"""
-    print(f"\n===== El inventario de la tienda {shop_name[0]} =====")
+def view_inventory():#function to display the inventory
+    print(f"\n===== El inventario de la tienda {shop_name[0]} =====")   
     for (i) in inventory:
         print(i)
 
-def main_menu():
+def main_menu():#function that displays the functionality menu
     while True:
         print(f"\n--- Menu Principal De La Tienda {shop_name[0]} ---")
         print("1. Agregar producto")
